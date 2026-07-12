@@ -223,6 +223,7 @@
   .who-text h2{font-size:clamp(27px,3.4vw,40px); line-height:1.22; margin-bottom:20px;}
   .who-text p{font-size:15px; color:var(--gray); line-height:1.8; max-width:460px;}
   @media(max-width:860px){.who-text p{margin:0 auto;}}
+  .who-values{margin-top:16px; padding-top:16px; border-top:1px solid var(--line-soft); font-size:13.5px !important; color:var(--fg-soft, var(--gray)) !important; font-style:italic;}
 
   /* WHAT I DO */
   .services-wrap{background:var(--bg-soft); padding:130px 32px; border-top:1px solid var(--line-soft);}
@@ -303,9 +304,50 @@
   .process-step:hover .process-num{transform:scale(1.08);}
   .process-step h3{position:relative; z-index:1; font-size:16.5px; margin-bottom:11px; letter-spacing:-0.01em;}
   .process-step p{position:relative; z-index:1; font-size:13.2px; line-height:1.65; color:var(--gray); margin:0;}
+  .process-wrap--slim{padding:64px 32px;}
+  .process-strip{max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:14px;}
+  .process-step-slim{display:flex; align-items:center; gap:12px; padding:10px 16px; border:1px solid var(--line-soft); border-radius:14px; background:rgba(255,255,255,.02);}
+  .process-num-slim{position:relative; width:34px; height:34px; min-width:34px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600;}
+  .process-num-slim span{position:relative; z-index:2; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+  .process-step-slim h3{font-size:13.5px; margin:0; letter-spacing:-0.01em; white-space:nowrap;}
+  .process-step-slim p{font-size:11.5px; margin:1px 0 0; color:var(--gray); white-space:nowrap;}
+  .process-strip-arrow{color:var(--line-soft); font-size:16px;}
+  @media(max-width:900px){.process-strip-arrow{display:none;} .process-strip{gap:10px;} .process-step-slim{width:100%; justify-content:center;} .process-step-slim h3, .process-step-slim p{white-space:normal;}}
 
   /* EXPERIENCE & EDUCATION — TIMELINE V2 */
   .exp-wrap{background:var(--bg); padding:130px 32px; border-top:1px solid var(--line-soft); position:relative; overflow:hidden;}
+  .exp-edu-grid{max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; position:relative;}
+  .exp-edu-grid::before{content:""; position:absolute; left:50%; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom, transparent, var(--line-soft) 12%, var(--line-soft) 88%, transparent); transform:translateX(-50%);}
+  @media(max-width:860px){.exp-edu-grid{grid-template-columns:1fr; gap:64px;} .exp-edu-grid::before{display:none;}}
+  .stack-list{display:flex; flex-direction:column; gap:0; position:relative;}
+  .stack-list::before{content:""; position:absolute; left:17px; top:36px; bottom:36px; width:1px; background:var(--line-soft);}
+  .stack-card{display:flex; align-items:flex-start; gap:14px; padding-bottom:28px; position:relative; border-radius:12px; transition:background .25s ease, transform .25s ease; margin:0 -14px; padding-left:14px; padding-right:14px;}
+  .stack-card:last-child{padding-bottom:0;}
+  .stack-card:hover{background:rgba(255,255,255,.03); transform:translateX(4px);}
+  .stack-badge{position:relative; width:36px; height:36px; min-width:36px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600;
+    box-shadow:
+      inset -8px -10px 16px rgba(0,0,0,.35),
+      inset 6px 8px 12px rgba(255,255,255,.4),
+      0 0 0 5px var(--bg), 0 0 18px -2px var(--tl-accent, var(--green));
+    animation:floaty 6s ease-in-out infinite;
+    transition:transform .35s var(--ease);}
+  .stack-card:nth-child(1) .stack-badge{animation-delay:0s;}
+  .stack-card:nth-child(2) .stack-badge{animation-delay:-2s;}
+  .stack-badge::after{content:''; position:absolute; top:15%; left:20%; width:32%; height:20%; background:rgba(255,255,255,.85); border-radius:50%; filter:blur(2px); opacity:.75;}
+  .stack-card:hover .stack-badge{transform:scale(1.12);}
+  .stack-badge span{position:relative; z-index:2; filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));}
+  .stack-card .tl-card{flex:1; margin:0; padding:0; border:none; background:none; box-shadow:none; margin-top:-2px;}
+  .stack-card .tl-card h3{transition:color .25s ease;}
+  .stack-card:hover .tl-card h3{color:var(--tl-accent, var(--green));}
+  .stack-card .tl-card:hover{transform:none; background:none;}
+  .tl-toggle{display:flex; align-items:center; gap:8px; background:none; border:none; padding:0; margin:0; cursor:pointer; font:inherit; color:inherit; text-align:left; width:100%;}
+  .tl-toggle h3{margin:0;}
+  .tl-chevron{flex-shrink:0; color:var(--gray); transition:transform .3s ease; margin-top:2px;}
+  .tl-toggle[aria-expanded="true"] .tl-chevron{transform:rotate(180deg); color:var(--tl-accent, var(--green));}
+  .tl-desc{display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease;}
+  .tl-desc > p{overflow:hidden; margin:0; padding-top:0; font-size:13.8px; line-height:1.7; color:var(--gray);}
+  .tl-toggle[aria-expanded="true"] + .tl-desc{grid-template-rows:1fr;}
+  .tl-toggle[aria-expanded="true"] + .tl-desc > p{padding-top:8px;}
   .timeline-v2{max-width:820px; margin:0 auto; position:relative; padding:20px 0;}
   .timeline-v2::before{
     content:''; position:absolute; left:50%; top:0; bottom:0; width:3px; transform:translateX(-50%);
@@ -939,7 +981,6 @@
 <div class="brand">Palak<span>.</span></div>
 <ul class="nav-links" id="navLinks">
 <li><a href="#who">Who I Am</a></li>
-<li><a href="#services">What I Do</a></li>
 <li><a href="#process">Process</a></li>
 <li><a href="#experience">Experience</a></li>
 <li><a href="#projects">Projects</a></li>
@@ -991,130 +1032,104 @@
 <span class="eyebrow">Who am I?</span>
 <h2>Design that connects strategy with a little bit of soul.</h2>
 <p>I'm a systems thinker with a maker's eye. Engineering background + design practice means I speak both languages. At GroCliq AI, I built the design foundation for 200+ screens — not just pretty, but coherent. Outside work, I crochet. It taught me that intention lives in the details.</p>
-</div>
-</div>
-</section>
-<!-- WHAT I DO -->
-<section class="process-wrap" id="services">
-<div class="blob3d organic blob-green float-slow" style="position:absolute; width:140px; height:140px; top:40px; left:-40px; opacity:.5;"></div>
-<div class="blob3d sphere blob-orange float-slower" style="position:absolute; width:90px; height:90px; bottom:60px; right:-20px; opacity:.5;"></div>
-<div class="section-head">
-<span class="eyebrow">What I stand by</span>
-<h2>Design Values</h2>
-</div>
-<div class="process-flow">
-<div class="process-step" style="--step-accent:var(--green);">
-<div class="process-num blob3d sphere blob-green"><span>✨</span></div>
-<h3>User First</h3>
-<p>Designs backed by research.</p>
-</div>
-<div class="process-step" style="--step-accent:var(--purple);">
-<div class="process-num blob3d squircle blob-purple" style="transform:rotate(-6deg);"><span>⚡</span></div>
-<h3>Clarity</h3>
-<p>Simple interfaces over unnecessary complexity.</p>
-</div>
-<div class="process-step" style="--step-accent:var(--blue);">
-<div class="process-num blob3d organic blob-blue"><span>🎯</span></div>
-<h3>Detail</h3>
-<p>Thoughtful interactions and polished visuals.</p>
-</div>
-<div class="process-step" style="--step-accent:var(--orange);">
-<div class="process-num blob3d organic-2 blob-orange" style="transform:rotate(6deg);"><span>🤝</span></div>
-<h3>Collaboration</h3>
-<p>Working closely with developers and stakeholders.</p>
+<p class="who-values">User-first research, clarity over complexity, obsessive detail, close collaboration — that's what I stand by.</p>
 </div>
 </div>
 </section>
 <!-- PROCESS / PHILOSOPHY -->
-<section class="process-wrap" id="process">
-<div class="blob3d organic blob-purple float-slow" style="position:absolute; width:160px; height:160px; top:40px; left:-40px; opacity:.5;"></div>
-<div class="blob3d sphere blob-blue float-slower" style="position:absolute; width:90px; height:90px; bottom:60px; right:-20px; opacity:.5;"></div>
+<section class="process-wrap process-wrap--slim" id="process">
+<div class="blob3d organic blob-purple float-slow" style="position:absolute; width:160px; height:160px; top:40px; left:-40px; opacity:.35;"></div>
+<div class="blob3d sphere blob-blue float-slower" style="position:absolute; width:90px; height:90px; bottom:20px; right:-20px; opacity:.35;"></div>
 <div class="section-head">
 <span class="eyebrow">How I actually work</span>
 <h2>Process, not just polish</h2>
 </div>
-<p class="process-tag">Cute outside, serious systems inside — every project moves through the same four beats before a single pixel is called "done."</p>
-<div class="process-flow">
-<div class="process-step" style="--step-accent:var(--green);">
-<div class="process-num blob3d sphere blob-green"><span>01</span></div>
-<h3>Understand</h3>
-<p>Research, proto-personas, and competitive context before any assumptions get made.</p>
+<div class="process-strip">
+<div class="process-step-slim" style="--step-accent:var(--green);">
+<div class="process-num-slim blob3d sphere blob-green"><span>01</span></div>
+<div><h3>Understand</h3><p>Research &amp; context</p></div>
 </div>
-<div class="process-step" style="--step-accent:var(--purple);">
-<div class="process-num blob3d squircle blob-purple" style="transform:rotate(-6deg);"><span>02</span></div>
-<h3>Structure</h3>
-<p>Information architecture and flows — the invisible system that everything else hangs on.</p>
+<div class="process-strip-arrow">→</div>
+<div class="process-step-slim" style="--step-accent:var(--purple);">
+<div class="process-num-slim blob3d squircle blob-purple" style="transform:rotate(-6deg);"><span>02</span></div>
+<div><h3>Structure</h3><p>IA &amp; flows</p></div>
 </div>
-<div class="process-step" style="--step-accent:var(--blue);">
-<div class="process-num blob3d organic blob-blue"><span>03</span></div>
-<h3>Design</h3>
-<p>Interfaces that carry a point of view, built inside a scalable design system.</p>
+<div class="process-strip-arrow">→</div>
+<div class="process-step-slim" style="--step-accent:var(--blue);">
+<div class="process-num-slim blob3d organic blob-blue"><span>03</span></div>
+<div><h3>Design</h3><p>Systemized UI</p></div>
 </div>
-<div class="process-step" style="--step-accent:var(--orange);">
-<div class="process-num blob3d organic-2 blob-orange" style="transform:rotate(6deg);"><span>04</span></div>
-<h3>Hand off</h3>
-<p>Specs, states, and edge cases documented so developers never have to guess.</p>
+<div class="process-strip-arrow">→</div>
+<div class="process-step-slim" style="--step-accent:var(--orange);">
+<div class="process-num-slim blob3d organic-2 blob-orange" style="transform:rotate(6deg);"><span>04</span></div>
+<div><h3>Hand off</h3><p>Specs &amp; edge cases</p></div>
 </div>
 </div>
 </section>
 <!-- EXPERIENCE -->
-<section class="exp-wrap" id="experience">
+<section class="exp-wrap exp-wrap--split" id="experience">
 <div class="blob3d organic blob-green float-slow" style="position:absolute; width:140px; height:140px; top:60px; left:-40px; opacity:.35;"></div>
 <div class="blob3d sphere blob-pink float-slower" style="position:absolute; width:90px; height:90px; top:120px; right:-20px; opacity:.35;"></div>
-<div class="blob3d squircle blob-purple float-slow" style="position:absolute; width:70px; height:70px; bottom:100px; left:2%; opacity:.3; transform:rotate(12deg); animation-delay:-3s;"></div>
-<div class="blob3d sphere blob-blue float-slower" style="position:absolute; width:50px; height:50px; bottom:40px; right:8%; opacity:.3; animation-delay:-1.5s;"></div>
-<div class="blob3d organic blob-pink float-slow" style="position:absolute; width:80px; height:80px; top:38%; left:calc(50% - 40px); opacity:.18; animation-delay:-2.5s;"></div>
-<div class="blob3d squircle blob-green float-slower" style="position:absolute; width:56px; height:56px; top:64%; left:calc(50% - 28px); opacity:.16; transform:rotate(-8deg); animation-delay:-0.8s;"></div>
-<div class="section-head">
+<div class="blob3d organic blob-pink float-slow" style="position:absolute; width:80px; height:80px; top:55%; left:8%; opacity:.14; animation-delay:-2.5s;"></div>
+<div class="exp-edu-grid" id="education">
+<div class="exp-edu-col">
+<div class="section-head" style="text-align:left; margin-bottom:32px;">
 <span class="eyebrow" style="color:var(--green);">Where I've worked</span>
 <h2>Experience</h2>
 </div>
-<div class="timeline-v2">
-<div class="tl-item" style="--tl-accent:var(--green);">
-<div class="tl-badge blob3d sphere blob-green"><span>GA</span></div>
+<div class="stack-list">
+<div class="stack-card" style="--tl-accent:var(--green);">
+<div class="stack-badge blob3d sphere blob-green"><span>GA</span></div>
 <div class="tl-card">
 <span class="date">Feb 2026 – May 2026 · UI/UX Executive</span>
+<button class="tl-toggle" type="button" aria-expanded="false">
 <h3>GroCliq AI</h3>
-<p>Designed 200+ product screens across multiple modules, built and maintained a scalable design system, and led dashboard &amp; AI workflow interfaces — working closely with developers and founders on landing pages, investor decks, and usability improvements.</p>
+<svg class="tl-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div class="tl-desc"><p>Designed 200+ product screens across multiple modules, built and maintained a scalable design system, and led dashboard &amp; AI workflow interfaces.</p></div>
 </div>
 </div>
-<div class="tl-item" style="--tl-accent:var(--pink);">
-<div class="tl-badge blob3d squircle blob-pink" style="transform:rotate(-8deg);"><span>GA</span></div>
+<div class="stack-card" style="--tl-accent:var(--pink);">
+<div class="stack-badge blob3d squircle blob-pink" style="transform:rotate(-8deg);"><span>GA</span></div>
 <div class="tl-card">
 <span class="date">2 months · UI/UX Design Intern</span>
+<button class="tl-toggle" type="button" aria-expanded="false">
 <h3>GroCliq AI</h3>
-<p>Owned UI design, wireframing, and prototyping for AI product interfaces and dashboards, laying the groundwork for the design system that followed.</p>
+<svg class="tl-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div class="tl-desc"><p>Owned UI design, wireframing, and prototyping for AI product interfaces and dashboards.</p></div>
 </div>
 </div>
 </div>
-</section>
-<!-- PROJECTS -->
-<section class="exp-wrap" id="education">
-<div class="blob3d sphere blob-blue float-slower" style="position:absolute; width:100px; height:100px; bottom:60px; right:-30px; opacity:.35;"></div>
-<div class="blob3d organic blob-orange float-slow" style="position:absolute; width:120px; height:120px; top:80px; left:-30px; opacity:.35;"></div>
-<div class="blob3d squircle blob-green float-slow" style="position:absolute; width:60px; height:60px; top:20px; right:10%; opacity:.3; transform:rotate(-10deg); animation-delay:-2s;"></div>
-<div class="blob3d sphere blob-pink float-slower" style="position:absolute; width:44px; height:44px; bottom:120px; left:8%; opacity:.3; animation-delay:-4s;"></div>
-<div class="blob3d organic-2 blob-purple float-slow" style="position:absolute; width:70px; height:70px; top:42%; left:calc(50% - 35px); opacity:.18; animation-delay:-1.2s;"></div>
-<div class="blob3d sphere blob-orange float-slower" style="position:absolute; width:46px; height:46px; top:68%; left:calc(50% - 23px); opacity:.16; animation-delay:-3.2s;"></div>
-<div class="section-head">
+</div>
+<div class="exp-edu-col">
+<div class="section-head" style="text-align:left; margin-bottom:32px;">
 <span class="eyebrow" style="color:var(--purple);">Learning &amp; Credentials</span>
 <h2>Education</h2>
 </div>
-<div class="timeline-v2">
-<div class="tl-item" style="--tl-accent:var(--orange);">
-<div class="tl-badge blob3d organic blob-orange"><span>IN</span></div>
+<div class="stack-list">
+<div class="stack-card" style="--tl-accent:var(--orange);">
+<div class="stack-badge blob3d organic blob-orange"><span>IN</span></div>
 <div class="tl-card">
 <span class="date">Nov 2025 – Apr 2026 · UI/UX Design Course</span>
+<button class="tl-toggle" type="button" aria-expanded="false">
 <h3>Internshala</h3>
-<p>Completed comprehensive UI/UX design training covering user research, wireframing, prototyping, and design systems.</p>
+<svg class="tl-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div class="tl-desc"><p>Completed comprehensive UI/UX design training covering research, wireframing, prototyping, and design systems.</p></div>
 </div>
 </div>
-<div class="tl-item" style="--tl-accent:var(--blue);">
-<div class="tl-badge blob3d organic-2 blob-blue" style="transform:rotate(6deg);"><span>AI</span></div>
+<div class="stack-card" style="--tl-accent:var(--blue);">
+<div class="stack-badge blob3d organic-2 blob-blue" style="transform:rotate(6deg);"><span>AI</span></div>
 <div class="tl-card">
 <span class="date">Expected May 2027</span>
+<button class="tl-toggle" type="button" aria-expanded="false">
 <h3>B.E., Electronics &amp; Computer Science</h3>
-<p>Anjuman-I-Islam's Kalsekar Technical Campus, University of Mumbai.</p>
+<svg class="tl-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div class="tl-desc"><p>Anjuman-I-Islam's Kalsekar Technical Campus, University of Mumbai.</p></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1662,7 +1677,12 @@
       if(e.key === 'ArrowLeft') goTo(current - 1);
       if(e.key === 'ArrowRight') goTo(current + 1);
     });
-  })();
+  })();document.querySelectorAll('.tl-toggle').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  });
+});
 </script>
 </body>
 </html>
