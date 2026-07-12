@@ -1503,13 +1503,25 @@
 
     var currentBlobUrl = null;
 
+    function isMobileViewer(){
+      return window.matchMedia && window.matchMedia('(max-width:760px)').matches;
+    }
+
     function openPdf(src, title, behanceUrl){
-      loading.classList.remove('hide');
       var finalSrc = src;
       if(src.indexOf('data:') === 0){
         finalSrc = dataUriToBlobUrl(src);
-        currentBlobUrl = finalSrc;
       }
+
+      // Mobile browsers render PDFs inside iframes at native resolution with
+      // broken/no pinch-zoom, so hand off to the device's own PDF viewer instead.
+      if(isMobileViewer()){
+        window.open(finalSrc, '_blank');
+        return;
+      }
+
+      currentBlobUrl = finalSrc;
+      loading.classList.remove('hide');
       frame.src = finalSrc;
       titleEl.textContent = title || 'Case Study';
       if(behanceUrl){
